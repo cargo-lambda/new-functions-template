@@ -1,0 +1,18 @@
+name: Rust Build
+description: Setups a Rust project for AWS Lambda
+
+runs:
+  using: "composite"
+  steps:
+    - uses: dtolnay/rust-toolchain@stable
+
+    - uses: korandoru/setup-zig@v1
+      with:
+        zig-version: 0.13.0
+
+    - uses: cargo-bins/cargo-binstall@main
+    - name: Install cargo-lambda
+      shell: bash
+      run: cargo binstall -y cargo-lambda
+
+    - uses: Swatinem/rust-cache@v2

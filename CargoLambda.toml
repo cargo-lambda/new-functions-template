@@ -1,0 +1,7 @@
+[template]
+render_all_files = true
+
+[template.ignore_conditional_files]
+"src/event_handler.rs" = { var = "event_type", match = false }
+"src/http_handler.rs" = { var = "http_function", match = false }
+"src/generic_handler.rs" = { var = "basic_example", match = false }

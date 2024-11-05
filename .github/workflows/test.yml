@@ -1,0 +1,57 @@
+name: Test template
+
+on:
+  pull_request:
+    paths:
+      - "template/**"
+      - "CargoLambda.toml"
+  push:
+    branches:
+      - main
+    paths:
+      - "template/**"
+      - "CargoLambda.toml"
+  workflow_dispatch:
+
+jobs:
+  test-generic-handler:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/rust-setup
+
+      - name: Test generic handler
+        run: |
+          mkdir -p tests && cd tests && \
+          cargo lambda new -y --template .. generic_handler && \
+          cd generic_handler && \
+          cargo test && \
+          cargo lambda build --release
+
+  test-http-handler:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/rust-setup
+
+      - name: Test HTTP handler
+        run: |
+          mkdir -p tests && cd tests && \
+          cargo lambda new --http --template .. http_handler && \
+          cd http_handler && \
+          cargo test && \
+          cargo lambda build --release
+
+  test-s3-handler:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/rust-setup
+
+      - name: Test S3 handler
+        run: |
+          mkdir -p tests && cd tests && \
+          cargo lambda new --event-type 's3::S3Event' --template .. s3_handler && \
+          cd s3_handler && \
+          cargo test && \
+          cargo lambda build --release
