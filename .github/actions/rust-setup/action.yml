@@ -10,9 +10,18 @@ runs:
       with:
         zig-version: 0.13.0
 
-    - uses: cargo-bins/cargo-binstall@main
+    # Install Cargo Lambda from source until 1.5 is released
+    #
+    # - uses: cargo-bins/cargo-binstall@main
+    # - name: Install cargo-lambda
+    #   shell: bash
+    #   run: cargo binstall -y cargo-lambda
+    #
     - name: Install cargo-lambda
       shell: bash
-      run: cargo binstall -y cargo-lambda
+      run: |
+        git clone https://github.com/cargo-lambda/cargo-lambda.git && \
+        cd cargo-lambda && \
+        make install-local
 
     - uses: Swatinem/rust-cache@v2
