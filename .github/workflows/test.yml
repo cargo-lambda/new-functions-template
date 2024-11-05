@@ -3,12 +3,16 @@ name: Test template
 on:
   pull_request:
     paths:
+      - ".github/actions/**"
+      - ".github/workflows/**"
       - "template/**"
       - "CargoLambda.toml"
   push:
     branches:
       - main
     paths:
+      - ".github/actions/**"
+      - ".github/workflows/**"
       - "template/**"
       - "CargoLambda.toml"
   workflow_dispatch:
