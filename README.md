@@ -15,6 +15,6 @@ To create a new project with this template you can simply run `cargo lambda new 
 
 If you're making changes to this template, you can run `cargo lambda new --template ./path/to/template PROJECT_NAME` to create a new project with the changes you made to the template.
 
-If you want to create a new project with a specific branch of this repository, you can run `cargo lambda new --template https://github.com/cargo-lambda/new-functions-template/tree/BRANCH_NAME`.
+If you want to create a new project with a specific branch of this repository, you can run `cargo lambda new --template https://github.com/cargo-lambda/new-functions-template/tree/BRANCH_NAME PROJECT_NAME`.
 
 Read more about Cargo Lambda Templates in [the Cargo Lambda documentation](https://www.cargo-lambda.info/commands/new.html#templates).
