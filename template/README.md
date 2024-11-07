@@ -19,11 +19,11 @@ You can run regular Rust unit tests with `cargo test`.
 
 If you want to run integration tests locally, you can use the `cargo lambda watch` and `cargo lambda invoke` commands to do it.
 
-First, run `cargo lambda watch` to start a local server.
+First, run `cargo lambda watch` to start a local server. When you make changes to the code, the server will automatically restart.
 
-Then, create a `data.json` file with the data you want to test with. This file should contain the event data that you want to pass to the lambda function in JSON format.
+Second, you'll need a way to pass the event data to the lambda function.
 
-You can also use the existent [event payloads](https://github.com/awslabs/aws-lambda-rust-runtime/tree/main/lambda-events/src/fixtures) in the Rust Runtime repository.
+You can use the existent [event payloads](https://github.com/awslabs/aws-lambda-rust-runtime/tree/main/lambda-events/src/fixtures) in the Rust Runtime repository if your lambda function is using one of the supported event types.
 
 You can use those examples directly with the `--data-example` flag, where the value is the name of the file in the [lambda-events](https://github.com/awslabs/aws-lambda-rust-runtime/tree/main/lambda-events/src/fixtures) repository without the `example_` prefix and the `.json` extension.
 
@@ -31,8 +31,7 @@ You can use those examples directly with the `--data-example` flag, where the va
 cargo lambda invoke --data-example apigw-request
 ```
 
-{% if basic_example -%}
-For generic events, like the ones handled by the `generic_handler` function, you can use the following data:
+For generic events, where you define the event data structure, you can create a JSON file with the data you want to test with. For example:
 
 ```json
 {
@@ -41,7 +40,8 @@ For generic events, like the ones handled by the `generic_handler` function, you
 ```
 
 Then, run `cargo lambda invoke --data-file ./data.json` to invoke the function with the data in `data.json`.
-{%- elsif http_function -%}
+
+{% if http_function -%}
 For HTTP events, you can also call the function directly with cURL or any other HTTP client. For example:
 
 ```bash
