@@ -2,18 +2,18 @@
 
 {{ project_name }} is a Rust project that implements an AWS Lambda function in Rust.
 
-# Prerequisites
+## Prerequisites
 
 - [Rust](https://www.rust-lang.org/tools/install)
 - [Cargo Lambda](https://www.cargo-lambda.info/guide/installation.html)
 
-# Building
+## Building
 
 To build the project for production, run `cargo lambda build --release`. Remove the `--release` flag to build for development.
 
 Read more about building your lambda function in [the Cargo Lambda documentation](https://www.cargo-lambda.info/commands/build.html).
 
-# Testing
+## Testing
 
 You can run regular Rust unit tests with `cargo test`.
 
@@ -51,7 +51,7 @@ curl https://localhost:9000
 Read more about running the local server in [the Cargo Lambda documentation for the `watch` command](https://www.cargo-lambda.info/commands/watch.html).
 Read more about invoking the function in [the Cargo Lambda documentation for the `invoke` command](https://www.cargo-lambda.info/commands/invoke.html).
 
-# Deploying
+## Deploying
 
 To deploy the project, run `cargo lambda deploy`. This will create an IAM role and a Lambda function in your AWS account.
 
